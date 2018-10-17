@@ -38,9 +38,9 @@ class App extends Component {
 
   //Función para agregar tareas 
   addTodo(todo) {
-    this.setState({
-      todos: [...this.state.todos, todo]
-    })
+      this.setState({
+        todos: [...this.state.todos, todo]
+      })  
   };
 
 
@@ -61,12 +61,12 @@ class App extends Component {
             </div>
             <div className="card-footer">
               <button
-                className="btn btn-outline-danger"
+                className="btn btn-outline-danger mt-1"
                 onClick={this.deleteTodo.bind(this, i)}>
                 Borrrar
               </button>
               <button
-                className="btn btn-outline-success ml-4 mt-2"
+                className="btn btn-outline-success ml-4 mt-1"
                 onClick={this.solveTodo.bind(this, i)}>
                 Completado
               </button>
@@ -108,3 +108,4 @@ class App extends Component {
 }
 
 export default App;
+

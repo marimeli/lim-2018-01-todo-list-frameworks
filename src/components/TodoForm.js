@@ -14,10 +14,14 @@ class TodoForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.onAddTodo(this.state);
-    this.setState({
-      title: '',
-      description: ''
-    })
+    if(this.state.description === '') {
+      alert('Completa los campos')
+    } else {
+      this.setState({
+        title: '',
+        description: ''
+      })
+    }
   };
 
   handleInputChange(e) {
@@ -27,7 +31,8 @@ class TodoForm extends Component {
     this.setState({
       [name]: value
     });
-  }
+  };
+
 
   render() {
     return (

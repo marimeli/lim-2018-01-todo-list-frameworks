@@ -1,7 +1,8 @@
 {
-  "name": "todoapp",
+  "name": "lim-2018-01-todo-list-frameworks",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://marimeli.github.io/lim-2018-01-todo-list-frameworks/",
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -11,7 +12,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +23,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "2.0.1"
+  }
 }
