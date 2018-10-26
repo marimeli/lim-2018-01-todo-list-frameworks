@@ -2,21 +2,18 @@ import React, { Component } from 'react';
 import './App.css';
 import { todos } from './todos.json'; // data
 import TodoForm from './components/TodoForm'; // subcomponents
+/* import TodoButtons from './components/TodoButtons'; */
 
 class App extends Component {
-  //agregando el estado
-  constructor() {
-    super();
-    //el estado es la manera en que nosotros estamos al tanto de la aplicacion
+  constructor() { //agregando el estado
+    super(); //el estado es la manera en que nosotros estamos al tanto de la aplicación
     this.state = {
       todos
     }
-    this.addTodo = this.addTodo.bind(this);
-    this.solveTodo = this.solveTodo.bind(this);
-  }
+  };
 
   //Función para eliminar tareas
-  deleteTodo(index) {
+  deleteTodo = (index) => {
     if (window.confirm('¿Estas segur@ de eliminar esta tarea?')) {
       this.setState({
         todos: this.state.todos.filter((e, i) => {
@@ -26,8 +23,8 @@ class App extends Component {
     }
   };
 
-   //Función para resolver tareas como completadas
-  solveTodo(index) {
+  //Función para resolver tareas como completadas
+  solveTodo = (index) => {
     if (document.getElementById(this.state.todos[index].title).hasAttribute('class')) {
       document.getElementById(this.state.todos[index].title).removeAttribute('class')
     }
@@ -37,37 +34,41 @@ class App extends Component {
   };
 
   //Función para agregar tareas 
-  addTodo(todo) {
+  addTodo = (todo) => {
+    if(todo.title.length && todo.description.length ) {
       this.setState({
         todos: [...this.state.todos, todo]
-      })  
+      })
+    } else {
+      alert('Completa los campos')
+    }
   };
 
-
   render() {
+    // console.log(this.state.todos);
     //aquí se procesarán los datos que luego se mostrarán. Recorremos el arreglo todos
     const todos = this.state.todos.map((todo, i) => {
       return (
         //crear cards de todos
-        <div className="col-md-4 key={i}">
+        <div className="col-md-4" key={i}>
           <div className="card mt-4 text-center">
             <div className="card-header">
               <h3>{todo.title}</h3>
             </div>
             <div className="card-body">
-            <div  id={todo.title}>
-              <p>{todo.description}</p>
+              <div id={todo.title}>
+                <p>{todo.description}</p>
               </div>
             </div>
             <div className="card-footer">
               <button
                 className="btn btn-outline-danger mt-1"
-                onClick={this.deleteTodo.bind(this, i)}>
+                onClick={() => this.deleteTodo(i)}>
                 Borrrar
               </button>
               <button
                 className="btn btn-outline-success ml-4 mt-1"
-                onClick={this.solveTodo.bind(this, i)}>
+                onClick={() => this.solveTodo(i)}>
                 Completado
               </button>
             </div>

@@ -7,24 +7,18 @@ class TodoForm extends Component {
       title: '',
       description: ''
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   };
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.onAddTodo(this.state);
-    if(this.state.description === '') {
-      alert('Completa los campos')
-    } else {
-      this.setState({
-        title: '',
-        description: ''
-      })
-    }
+    this.setState({
+      title: '',
+      description: ''
+    })
   };
 
-  handleInputChange(e) {
+  handleInputChange = (e) => {
     const { value, name } = e.target;
     console.log(value, name);//usando destructuring
     console.log(e.target.value, e.target.name);//forma larga
@@ -68,7 +62,6 @@ class TodoForm extends Component {
       </div>
     )
   }
-
 }
 
 export default TodoForm;
