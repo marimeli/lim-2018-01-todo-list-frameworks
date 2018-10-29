@@ -6,7 +6,7 @@ class Todos extends Component {
   constructor() {
     super();
     this.state = {
-      item: []
+      items: []
     }
   };
 
