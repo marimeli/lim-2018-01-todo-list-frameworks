@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
+/* import Todos from './components/Todos'; */
 import { todos } from './todos.json'; // data
-import TodoForm from './components/TodoForm'; // subcomponents
-/* import TodoButtons from './components/TodoButtons'; */
+import TodoForm from './components/TodoForm';
+import Navigation from './components/Navigation';
+import {
+  Container, Row, Col, Card, CardHeader, CardBody,
+  CardTitle, CardSubtitle, CardFooter, Button
+} from 'reactstrap';
+/* import TodoCards from './components/TodoCards'; */
+
 
 class App extends Component {
-  constructor() { //agregando el estado
-    super(); //el estado es la manera en que nosotros estamos al tanto de la aplicación
+  constructor() {
+    super();
     this.state = {
       todos
     }
@@ -35,7 +42,7 @@ class App extends Component {
 
   //Función para agregar tareas 
   addTodo = (todo) => {
-    if(todo.title.length && todo.description.length ) {
+    if (todo.title.length && todo.description.length) {
       this.setState({
         todos: [...this.state.todos, todo]
       })
@@ -45,64 +52,42 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.state.todos);
-    //aquí se procesarán los datos que luego se mostrarán. Recorremos el arreglo todos
     const todos = this.state.todos.map((todo, i) => {
       return (
-        //crear cards de todos
-        <div className="col-md-4" key={i}>
-          <div className="card mt-4 text-center">
-            <div className="card-header">
-              <h3>{todo.title}</h3>
-            </div>
-            <div className="card-body">
-              <div id={todo.title}>
-                <p>{todo.description}</p>
-              </div>
-            </div>
-            <div className="card-footer">
-              <button
-                className="btn btn-outline-danger mt-1"
-                onClick={() => this.deleteTodo(i)}>
-                Borrrar
-              </button>
-              <button
-                className="btn btn-outline-success ml-4 mt-1"
-                onClick={() => this.solveTodo(i)}>
-                Completado
-              </button>
-            </div>
-          </div>
-        </div>
+        <Col md="4" key={i}>
+          <Card className="mt-4 text-center">
+            <CardHeader>
+              <CardTitle>{todo.title}</CardTitle>
+            </CardHeader>
+            <CardBody>
+              <CardSubtitle id={todo.title}>{todo.description}</CardSubtitle>
+            </CardBody>
+            <CardFooter>
+              {/* <ItemsCards name="Borrar"></ItemsCards> */}
+              <Button className="btn btn-outline-success mt-1" onClick={() => this.solveTodo(i)}> 
+              <i className="fas fa-check-circle"></i> </Button>
+              <Button className="btn btn-outline-danger ml-2 mt-1" onClick={() => this.deleteTodo(i)}>
+              <i className="fas fa-trash-alt"></i> </Button>
+            </CardFooter>
+          </Card>
+        </Col>
       )
     })
 
     return (
-      //Esto es lo que pintará/mostrará
       <div className="App" >
-
-        <nav className="navbar navbar-dark bg-secondary justify-content-center">
-          <a href="/" className="text-white">Lista de tareas
-            <span className="badge badge-pill badge-light ml-2">
-              {this.state.todos.length}
-            </span>
-          </a>
-        </nav>
-
-        <div className="container">
-          <div className="row mt-4">
-
-            <div className="col-md-4 text-center">
+        <Navigation title="Lista de tareas" /> {/* pasandole propiedad y su valor al componente */}
+        <Container>
+          <Row className="mt-4">
+            <Col xs="12" className="text-center">
               <TodoForm onAddTodo={this.addTodo}></TodoForm>
-            </div>
-
-            <div className="col-md-8">
-              <div className="row">
-                {todos}
-              </div>
-            </div>
-          </div>
-        </div>
+            </Col>
+            <Col xs="12">
+              <Row> {todos} </Row>
+            {/*   <Todos/> */}
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Card, CardBody, Form, FormGroup, Input, Button } from 'reactstrap';
 
 class TodoForm extends Component {
   constructor() {
@@ -9,8 +10,9 @@ class TodoForm extends Component {
     };
   };
 
+  //Función que ejecutará el evento submit del formuñario
   handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //evita refrescar la página
     this.props.onAddTodo(this.state);
     this.setState({
       title: '',
@@ -18,11 +20,12 @@ class TodoForm extends Component {
     })
   };
 
+  //Función para capturar el valor que reciba el input que está ejecutándose. 
   handleInputChange = (e) => {
     const { value, name } = e.target;
-    console.log(value, name);//usando destructuring
-    console.log(e.target.value, e.target.name);//forma larga
     this.setState({
+      //name me permite saber qué input es el que está escribiendo, por el nombre
+      //el input(nombre) que tiene que actualizar es el valor que estoy escribiendo
       [name]: value
     });
   };
@@ -30,36 +33,34 @@ class TodoForm extends Component {
 
   render() {
     return (
-      <div className="card">
-        <form onSubmit={this.handleSubmit} className="card-body">
+      <Card>
+        <CardBody>
+          <Form onSubmit={this.handleSubmit}>
 
-          <div className="form-group">
-            <input
-              type="text"
-              name="title"
-              className="form-control"
-              value={this.state.title}
-              onChange={this.handleInputChange}
-              placeholder="Title"
-            />
-          </div>
+            <FormGroup>
+              <Input
+                type="text"
+                name="title"
+                value={this.state.title}
+                onChange={this.handleInputChange}
+                placeholder="Título"
+              />
+            </FormGroup>
 
-          <div className="form-group">
-            <input
-              type="text"
-              name="description"
-              className="form-control"
-              value={this.state.description}
-              onChange={this.handleInputChange}
-              placeholder="Description"
-            />
-          </div>
+            <FormGroup>
+              <Input
+                type="text"
+                name="description"
+                value={this.state.description}
+                onChange={this.handleInputChange}
+                placeholder="Descripción"
+              />
+            </FormGroup>
 
-          <button type="submit" className="btn btn-outline-dark">
-            Guardar
-          </button>
-        </form>
-      </div>
+            <Button type="submit" className="btn btn-outline-dark"> Agregar <i className="fas fa-plus-circle"></i>  </Button>
+          </Form>
+        </CardBody>
+      </Card>
     )
   }
 }
