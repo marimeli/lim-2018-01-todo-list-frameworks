@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/lim-2018-01-todo-list-frameworks/static/js/runtime~main.50626c47.js"
   },
   {
-    "revision": "106a29e4d34ab9955d9e",
-    "url": "/lim-2018-01-todo-list-frameworks/static/js/main.106a29e4.chunk.js"
+    "revision": "9dbf3a2f440c1183e6e7",
+    "url": "/lim-2018-01-todo-list-frameworks/static/js/main.9dbf3a2f.chunk.js"
   },
   {
-    "revision": "b49fa2818e7e63524ed0",
-    "url": "/lim-2018-01-todo-list-frameworks/static/js/1.b49fa281.chunk.js"
+    "revision": "e1a0323ebb4202bc381c",
+    "url": "/lim-2018-01-todo-list-frameworks/static/js/1.e1a0323e.chunk.js"
   },
   {
-    "revision": "106a29e4d34ab9955d9e",
+    "revision": "9dbf3a2f440c1183e6e7",
     "url": "/lim-2018-01-todo-list-frameworks/static/css/main.caa6394a.chunk.css"
   },
   {
-    "revision": "aa299821b44b122a73486e6aec7cc70b",
+    "revision": "01a0d864abf6b6d29fc4dcaed85fe6da",
     "url": "/lim-2018-01-todo-list-frameworks/index.html"
   }
 ];
