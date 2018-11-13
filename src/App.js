@@ -32,11 +32,12 @@ class App extends Component {
 
   //Función para resolver tareas como completadas
   solveTodo = (index) => {
-    if (document.getElementById(this.state.todos[index].title).hasAttribute('class')) {
-      document.getElementById(this.state.todos[index].title).removeAttribute('class')
+    const { todos } = this.state
+    if (document.getElementById(todos[index].title).classList.contains('change')) {
+      document.getElementById(todos[index].title).classList.remove('change')
     }
     else {
-      document.getElementById(this.state.todos[index].title).setAttribute('class', 'change');
+      document.getElementById(todos[index].title).classList.add('change');
     }
   };
 
@@ -52,31 +53,29 @@ class App extends Component {
   };
 
   render() {
-    const todos = this.state.todos.map((todo, i) => {
-      return (
-        <Col md="4" key={i}>
-          <Card className="mt-4 text-center">
-            <CardHeader>
-              <CardTitle>{todo.title}</CardTitle>
-            </CardHeader>
-            <CardBody>
-              <CardSubtitle id={todo.title}>{todo.description}</CardSubtitle>
-            </CardBody>
-            <CardFooter>
-              {/* <ItemsCards name="Borrar"></ItemsCards> */}
-              <Button className="btn btn-outline-success mt-1" onClick={() => this.solveTodo(i)}> 
+    const todos = this.state.todos.map((todo, i) =>
+      <Col md="4" key={i}>
+        <Card className="mt-4 text-center">
+          <CardHeader>
+            <CardTitle>{todo.title}</CardTitle>
+          </CardHeader>
+          <CardBody>
+            <CardSubtitle id={todo.title}>{todo.description}</CardSubtitle>
+          </CardBody>
+          <CardFooter>
+            {/* <ItemsCards name="Borrar"></ItemsCards> */}
+            <Button className="btn btn-outline-success mt-1" onClick={() => this.solveTodo(i)}>
               <i className="fas fa-check-circle"></i> </Button>
-              <Button className="btn btn-outline-danger ml-2 mt-1" onClick={() => this.deleteTodo(i)}>
+            <Button className="btn btn-outline-danger ml-2 mt-1" onClick={() => this.deleteTodo(i)}>
               <i className="fas fa-trash-alt"></i> </Button>
-            </CardFooter>
-          </Card>
-        </Col>
-      )
-    })
+          </CardFooter>
+        </Card>
+      </Col>
+    )
 
     return (
       <div className="App" >
-        <Navigation title="Lista de tareas" /> {/* pasandole propiedad y su valor al componente */}
+        <Navigation title="Lista de tareas" count={this.state.todos.length} /> {/* pasandole propiedad y su valor al componente */}
         <Container>
           <Row className="mt-4">
             <Col xs="12" className="text-center">
@@ -84,7 +83,7 @@ class App extends Component {
             </Col>
             <Col xs="12">
               <Row> {todos} </Row>
-            {/*   <Todos/> */}
+              {/*   <Todos/> */}
             </Col>
           </Row>
         </Container>
